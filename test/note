@@ -1,0 +1,353 @@
+ipr: 0
+jpr: 0
+ii0: 0
+ij0: 0
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 1.000000
+
+ipr: 1
+jpr: 0
+ii0: 1
+ij0: 0
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.236704
+
+ipr: 1
+jpr: 1
+ii0: 1
+ij0: 1
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 1.000000
+
+ipr: 2
+jpr: 0
+ii0: 2
+ij0: 0
+dimi: 3
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 0
+ii0: 2
+ij0: 0
+dimi: 3
+dimj: 1
+ii: 1
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 0
+ii0: 2
+ij0: 0
+dimi: 3
+dimj: 1
+ii: 2
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 1
+ii0: 2
+ij0: 1
+dimi: 3
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 1
+ii0: 2
+ij0: 1
+dimi: 3
+dimj: 1
+ii: 1
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 1
+ii0: 2
+ij0: 1
+dimi: 3
+dimj: 1
+ii: 2
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 2
+ii0: 2
+ij0: 2
+dimi: 3
+dimj: 3
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 1.000000
+
+ipr: 2
+jpr: 2
+ii0: 2
+ij0: 2
+dimi: 3
+dimj: 3
+ii: 0
+jj: 1
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 2
+ii0: 2
+ij0: 2
+dimi: 3
+dimj: 3
+ii: 0
+jj: 2
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 2
+ii0: 2
+ij0: 2
+dimi: 3
+dimj: 3
+ii: 1
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 2
+ii0: 2
+ij0: 2
+dimi: 3
+dimj: 3
+ii: 1
+jj: 1
+buf[ii * dimj + jj]: 1.000000
+
+ipr: 2
+jpr: 2
+ii0: 2
+ij0: 2
+dimi: 3
+dimj: 3
+ii: 1
+jj: 2
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 2
+ii0: 2
+ij0: 2
+dimi: 3
+dimj: 3
+ii: 2
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 2
+ii0: 2
+ij0: 2
+dimi: 3
+dimj: 3
+ii: 2
+jj: 1
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 2
+jpr: 2
+ii0: 2
+ij0: 2
+dimi: 3
+dimj: 3
+ii: 2
+jj: 2
+buf[ii * dimj + jj]: 1.000000
+
+ipr: 3
+jpr: 0
+ii0: 5
+ij0: 0
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.053885
+
+ipr: 3
+jpr: 1
+ii0: 5
+ij0: 1
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.474332
+
+ipr: 3
+jpr: 2
+ii0: 5
+ij0: 2
+dimi: 1
+dimj: 3
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 3
+jpr: 2
+ii0: 5
+ij0: 2
+dimi: 1
+dimj: 3
+ii: 0
+jj: 1
+buf[ii * dimj + jj]: -0.310727
+
+ipr: 3
+jpr: 2
+ii0: 5
+ij0: 2
+dimi: 1
+dimj: 3
+ii: 0
+jj: 2
+buf[ii * dimj + jj]: 0.240947
+
+ipr: 3
+jpr: 3
+ii0: 5
+ij0: 5
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 1.000000
+
+ipr: 4
+jpr: 0
+ii0: 6
+ij0: 0
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.053885
+
+ipr: 4
+jpr: 1
+ii0: 6
+ij0: 1
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.474332
+
+ipr: 4
+jpr: 2
+ii0: 6
+ij0: 2
+dimi: 1
+dimj: 3
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.000000
+
+ipr: 4
+jpr: 2
+ii0: 6
+ij0: 2
+dimi: 1
+dimj: 3
+ii: 0
+jj: 1
+buf[ii * dimj + jj]: 0.310727
+
+ipr: 4
+jpr: 2
+ii0: 6
+ij0: 2
+dimi: 1
+dimj: 3
+ii: 0
+jj: 2
+buf[ii * dimj + jj]: 0.240947
+
+ipr: 4
+jpr: 3
+ii0: 6
+ij0: 5
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 0.251681
+
+ipr: 4
+jpr: 4
+ii0: 6
+ij0: 6
+dimi: 1
+dimj: 1
+ii: 0
+jj: 0
+buf[ii * dimj + jj]: 1.000000
+
+Overlap matrix:
+[[1.         0.         0.         0.         0.         0.  0.        ]
+ [0.23670394 1.         0.         0.         0.         0.  0.        ]
+ [0.         0.         1.         0.         0.         0.  0.        ]
+ [0.         0.         0.         0.         0.         0.  0.        ]
+ [0.         0.         0.         0.         0.         0.  0.        ]
+ [0.05388499 0.47433177 0.24094659 0.         0.         1.  0.        ]
+ [0.05388499 0.47433177 0.24094659 0.         0.         0.25168084  1.        ]]
+
+
+
+
+
+
+[[1.]]
+[[0.23670394]]
+[[1.]]
+[[0.]
+ [0.]
+ [0.]]
+[[0.]
+ [0.]
+ [0.]]
+[[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]
+[[0.05388499]]
+[[0.47433177]]
+[[ 0.         -0.31072669  0.24094659]]
+[[1.]]
+[[0.05388499]]
+[[0.47433177]]
+[[0.         0.31072669 0.24094659]]
+[[0.25168084]]
+[[1.]]
+Overlap matrix:
+[[ 1.          0.          0.          0.          0.          0.   0.        ]
+ [ 0.23670394  1.          0.          0.          0.          0.   0.        ]
+ [ 0.          0.          1.          0.          0.          0.   0.        ]
+ [ 0.          0.          0.          1.          0.          0.   0.        ]
+ [ 0.          0.          0.          0.          1.          0.   0.        ]
+ [ 0.05388499  0.47433177  0.         -0.31072669  0.24094659  1.   0.        ]
+ [ 0.05388499  0.47433177  0.          0.31072669  0.24094659  0.25168084  1.        ]]
