@@ -10,10 +10,11 @@ print("env from get_gto:", env)
 print("nshl from get_gto:", nshl)
 print("nao from get_gto:", nao)
 print("natm from get_gto:", natm)
-
-'''
 print("pairs: ", pairs)
 
+'''
+
+dm = np.eye(nao)
 
 
 
@@ -30,7 +31,21 @@ lib.calculate_j.argtypes = [
     ctypes.c_int,
     np.ctypeslib.ndpointer(dtype=np.double, ndim=1),
     ctypes.c_int,
-    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2)
+    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+    np.ctypeslib.ndpointer(dtype=np.double, ndim=2)
+]
+
+lib.calculate_k.restype = None
+lib.calculate_k.argtypes = [
+    np.ctypeslib.ndpointer(dtype=np.double, ndim=2),
+    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+    ctypes.c_int,
+    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+    ctypes.c_int,
+    np.ctypeslib.ndpointer(dtype=np.double, ndim=1),
+    ctypes.c_int,
+    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+    np.ctypeslib.ndpointer(dtype=np.double, ndim=2)
 ]
 
 # Allocate memory for the overlap matrix
@@ -45,7 +60,26 @@ lib.calculate_j(
     ctypes.c_int(nshl),
     env,
     ctypes.c_int(nao),
-    pairs
+    pairs,
+    dm
 )
 
+j_matrix = 0.5 * (j_matrix + j_matrix.T)
 print("J matrix: ", j_matrix)
+
+#
+k_matrix = np.zeros((nao, nao), dtype=np.double)
+
+lib.calculate_k(
+    k_matrix,
+    atm,
+    ctypes.c_int(natm),
+    bas,
+    ctypes.c_int(nshl),
+    env,
+    ctypes.c_int(nao),
+    pairs,
+    dm
+)
+k_matrix = 0.5 * (k_matrix + k_matrix.T)
+print("K matrix: ", k_matrix)
