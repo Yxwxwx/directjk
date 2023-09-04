@@ -14,72 +14,122 @@ print("pairs: ", pairs)
 
 '''
 
-dm = np.eye(nao)
+#dm = np.eye(nao)
 
 
+def get_j_matrix(dm):
+    
+    # Load the C library
+    lib = ctypes.CDLL('../c/libcalc_int2e.so')
+    
+    # Define the function signature and arguments
+    lib.calculate_j.restype = None
+    lib.calculate_j.argtypes = [
+        np.ctypeslib.ndpointer(dtype=np.double, ndim=2),
+        np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+        ctypes.c_int,
+        np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+        ctypes.c_int,
+        np.ctypeslib.ndpointer(dtype=np.double, ndim=1),
+        ctypes.c_int,
+        np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+        np.ctypeslib.ndpointer(dtype=np.double, ndim=2)
+    ]
+    
 
-# Load the C library
-lib = ctypes.CDLL('../c/libcalc_int2e.so')
+    
+    # Allocate memory for the overlap matrix
+    j_matrix = np.zeros((nao, nao), dtype=np.double)
+    
+    # Call the C function
+    lib.calculate_j(
+        j_matrix,
+        atm,
+        ctypes.c_int(natm),
+        bas,
+        ctypes.c_int(nshl),
+        env,
+        ctypes.c_int(nao),
+        pairs,
+        dm
+    )
+    
+    j_matrix = 0.5 * (j_matrix + j_matrix.T)
+    #print("J matrix: ", j_matrix)
+    return j_matrix
 
-# Define the function signature and arguments
-lib.calculate_j.restype = None
-lib.calculate_j.argtypes = [
-    np.ctypeslib.ndpointer(dtype=np.double, ndim=2),
-    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
-    ctypes.c_int,
-    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
-    ctypes.c_int,
-    np.ctypeslib.ndpointer(dtype=np.double, ndim=1),
-    ctypes.c_int,
-    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
-    np.ctypeslib.ndpointer(dtype=np.double, ndim=2)
-]
+def get_k_matrix(dm):
 
-lib.calculate_k.restype = None
-lib.calculate_k.argtypes = [
-    np.ctypeslib.ndpointer(dtype=np.double, ndim=2),
-    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
-    ctypes.c_int,
-    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
-    ctypes.c_int,
-    np.ctypeslib.ndpointer(dtype=np.double, ndim=1),
-    ctypes.c_int,
-    np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
-    np.ctypeslib.ndpointer(dtype=np.double, ndim=2)
-]
+    # Load the C library
+    lib = ctypes.CDLL('../c/libcalc_int2e.so')
+    lib.calculate_k.restype = None
+    lib.calculate_k.argtypes = [
+        np.ctypeslib.ndpointer(dtype=np.double, ndim=2),
+        np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+        ctypes.c_int,
+        np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+        ctypes.c_int,
+        np.ctypeslib.ndpointer(dtype=np.double, ndim=1),
+        ctypes.c_int,
+        np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+        np.ctypeslib.ndpointer(dtype=np.double, ndim=2)
+    ]
+    
+    k_matrix = np.zeros((nao, nao), dtype=np.double)
+    
+    lib.calculate_k(
+        k_matrix,
+        atm,
+        ctypes.c_int(natm),
+        bas,
+        ctypes.c_int(nshl),
+        env,
+        ctypes.c_int(nao),
+        pairs,
+        dm
+    )
+    k_matrix = 0.5 * (k_matrix + k_matrix.T)
+    #print("K matrix: ", k_matrix)
+    return k_matrix
+'''  
+def get_g_matrix(dm):
 
-# Allocate memory for the overlap matrix
-j_matrix = np.zeros((nao, nao), dtype=np.double)
+    # Load the C library
+    lib = ctypes.CDLL('../c/libcalc_int2e.so')
+    lib.calculate_g.restype = None
+    lib.calculate_g.argtypes = [
+        np.ctypeslib.ndpointer(dtype=np.double, ndim=2),
+        np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+        ctypes.c_int,
+        np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+        ctypes.c_int,
+        np.ctypeslib.ndpointer(dtype=np.double, ndim=1),
+        ctypes.c_int,
+        np.ctypeslib.ndpointer(dtype=np.intc, ndim=2),
+        np.ctypeslib.ndpointer(dtype=np.double, ndim=2)
+    ]
+    
+    g_matrix = np.zeros((nao, nao), dtype=np.double)
+    
+    lib.calculate_g(
+        g_matrix,
+        atm,
+        ctypes.c_int(natm),
+        bas,
+        ctypes.c_int(nshl),
+        env,
+        ctypes.c_int(nao),
+        pairs,
+        dm
+    )
+    g_matrix = 0.5 * (g_matrix + g_matrix.T)
+    
+    return g_matrix
+'''  
 
-# Call the C function
-lib.calculate_j(
-    j_matrix,
-    atm,
-    ctypes.c_int(natm),
-    bas,
-    ctypes.c_int(nshl),
-    env,
-    ctypes.c_int(nao),
-    pairs,
-    dm
-)
+def get_g_matrix(dm):
+    g_matrix = np.zeros((nao, nao), dtype=np.double)
+    g_matrix =  get_j_matrix(dm) * 2  - get_k_matrix(dm)
+    return g_matrix
 
-j_matrix = 0.5 * (j_matrix + j_matrix.T)
-print("J matrix: ", j_matrix)
-
-#
-k_matrix = np.zeros((nao, nao), dtype=np.double)
-
-lib.calculate_k(
-    k_matrix,
-    atm,
-    ctypes.c_int(natm),
-    bas,
-    ctypes.c_int(nshl),
-    env,
-    ctypes.c_int(nao),
-    pairs,
-    dm
-)
-k_matrix = 0.5 * (k_matrix + k_matrix.T)
-print("K matrix: ", k_matrix)
+#print(get_g_matrix(dm))

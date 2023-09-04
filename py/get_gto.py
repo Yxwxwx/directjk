@@ -1,7 +1,8 @@
 import numpy as np
 import ctypes
-from pyscf import gto, scf
-from utils import shell_slice, shell_pairs, nbas_per_shell, merge, unique_factor
+from pyscf import gto
+from utils import shell_pairs, get_nao
+
 
 # slots of atm
 CHARGE_OF       = 0
@@ -26,7 +27,12 @@ RESERVE_BASLOT  = 7
 BAS_SLOTS       = 8
 
 # Create a molecular object for H2O molecule
-mol = gto.M(atom='O 0 0 0; H 0 -0.757 0.587; H 0 0.757 0.587', basis='sto-3g')
+mol = gto.M(atom='''
+            O  0.0  0.0  0.0
+            O  0.0  0.0  1.5
+            H  1.0  0.0  0.0
+            H  0.0  0.7  1.0
+            ''', basis='6-31g**')
 
 # necessary parameters for Libcint
 atm = mol._atm.astype(np.intc)
@@ -41,6 +47,10 @@ print("env: ", env)
 
 # Extract the necessary parameters from the molecular object
 nao = mol.nao_nr().astype(np.intc)
+#nao_yx = get_nao(bas)
+#assert nao_yx == nao
+
+
 nshl = len(bas)
 natm = len(atm)
 
@@ -52,3 +62,37 @@ print("natm: ", natm)
 
 # Necessary parameters for 2e integer
 pairs = shell_pairs(nshl).astype(np.intc)
+
+# ==>Get informt <==
+# get atom coordinate
+A_t = mol.atom_coords()
+# get atom charge
+Z_A = mol.atom_charges()
+# get number of electron
+ne = sum(mol.nelec)
+# get the number of alpha orb
+nalpha = mol.nelec[0]
+# get the number of beta orb
+nbeta = mol.nelec[1]
+# get the number of doubly occupied orbitals
+ndocc = min(nalpha, nbeta)
+# get the number of single occupied orbitals
+nsocc = abs(nalpha - nbeta)
+# print
+print("Number of AO: ", nao)
+print("Number of alpha electrons: ", nalpha)
+print("Number of beta electrons: ", nbeta)
+print("Number of electrons: ", ne)
+print("Number of doubly occupied orbitals: ", ndocc)
+print("Number of single occupied orbitals: ", nsocc)
+
+# get r_AB martix
+r_AB = np.empty((mol.natm, mol.natm))
+for A in range(mol.natm):
+    for B in range(mol.natm):
+        if A != B:
+            r_AB[A, B] = np.linalg.norm(A_t[A] - A_t[B])
+        else:
+            r_AB[A, B] = np.infty
+
+E_nuc = 0.5 * np.einsum("A, B, AB ->", Z_A, Z_A, 1 / r_AB)
