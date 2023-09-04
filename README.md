@@ -6,3 +6,4 @@ write by C and python
 希望她两年后Python写的比我好！  
 gcc -shared -o libcalc_int2e.so -fPIC calculate_int2e.c -O3 -lcint   
 gcc -shared -o libcalc_int1e.so -fPIC calculate_int1e.c -O3 -lcint 
+python setup.py build_ext --inplace
